@@ -523,11 +523,15 @@ async def save_receiver(message: Message, state: FSMContext):
 
 
 async def main():
-  bot = Bot(token=TOKEN)
-  print("Complete Store Bot is running without errors...")
-  await dp.start_polling(bot)
+    bot = Bot(token=TOKEN)
+    
+    # Eski webhookni o'chirish uchun mana shu qatorni qo'shamiz:
+    await bot.delete_webhook(drop_pending_updates=True)
+    
+    print("Complete Store Bot is running without errors...")
+    await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
-  logging.basicConfig(level=logging.INFO, stream=sys.stdout)
-  asyncio.run(main())
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+    asyncio.run(main())
